@@ -1,5 +1,13 @@
 package u4d9;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Supplier;
+
+import u4d9.entities.Student;
+
 public class App {
 
 	public static void main(String[] args) {
@@ -86,14 +94,14 @@ public class App {
 //		System.out.println(isMoreThanZero.negate().test(aldo.getAge()));
 
 		// ************************ SUPPLIER ******************
-//		Supplier<Integer> intSupplier = () -> {
-//			Random rndm = new Random();
-//			return rndm.nextInt(1, 100);
-//		};
+		Supplier<Integer> intSupplier = () -> {
+			Random rndm = new Random();
+			return rndm.nextInt(1, 100);
+		};
 //		
-//		Supplier<Student> studentsSupplier = () -> {
-//			return new Student("Aldo", "Baglio", 20, intSupplier.get());
-//		};
+		Supplier<Student> studentsSupplier = () -> {
+			return new Student("Aldo", "Baglio", 20, intSupplier.get());
+		};
 //
 //		List<Student> students = new ArrayList<>();
 //
@@ -142,11 +150,17 @@ public class App {
 //			return new Student("Aldo", "Baglio", intSupplier.get(), rndm.nextInt());
 //		};
 //
-//		List<Student> students = new ArrayList<>();
-//
-//		for (int i = 0; i < 100; i++) {
-//			students.add(studentsSupplier.get());
-//		}
+		List<Student> students = new ArrayList<>();
+
+		for (int i = 0; i < 100; i++) {
+			students.add(studentsSupplier.get());
+		}
+
+		 int totalAge = students.stream().map(s -> s.getAge()).reduce(0, (acc, curr)
+		 -> acc + curr);
+
+//		int totalAge = students.stream().map(Student::getAge).reduce(0, (acc, curr) -> acc + curr);
+		System.out.println(totalAge);
 //
 //		List<String> youngStudents = students.stream().filter(student -> student.getAge() < 18)
 //				.map(student -> student.getSurname()).toList();
@@ -162,5 +176,19 @@ public class App {
 //		if (students.stream().anyMatch(student -> student.getAge() == 18)) {
 //			System.out.println("C'è almeno uno studente con 18 anni");
 //		}
+
+//		List<? extends Student> list = new ArrayList<>(); // Generics con tipo unknown
+
+		// ************************************* LOCAL DATES ******************
+		LocalDate today = LocalDate.now();
+		System.out.println(today);
+
+		LocalDate tomorrow = today.plusDays(1);
+		System.out.println(tomorrow);
+
+		LocalDate yesterday = today.minusDays(1);
+		System.out.println(yesterday);
+
+		System.out.println(yesterday.isBefore(today));
 	}
 }

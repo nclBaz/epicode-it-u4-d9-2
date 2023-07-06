@@ -7,17 +7,18 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.github.javafaker.Faker;
 
 import u4d9.entities.Student;
 
 public class App {
 
-	// private static final Logger log = (Logger)
-	// LoggerFactory.getLogger(App.class);
+	private static final Logger log = LoggerFactory.getLogger(App.class);
 
 	public static void main(String[] args) {
-
 //		new Thread(new Runnable() {
 //			public void run() {
 //				for (int i = 0; i <= 10; i++) {

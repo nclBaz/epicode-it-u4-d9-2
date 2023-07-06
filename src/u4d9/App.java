@@ -3,12 +3,18 @@ package u4d9;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.function.Supplier;
+
+import com.github.javafaker.Faker;
 
 import u4d9.entities.Student;
 
 public class App {
+
+	// private static final Logger log = (Logger)
+	// LoggerFactory.getLogger(App.class);
 
 	public static void main(String[] args) {
 
@@ -98,18 +104,20 @@ public class App {
 			Random rndm = new Random();
 			return rndm.nextInt(1, 100);
 		};
+		Faker f = new Faker(Locale.ITALY);
 //		
 		Supplier<Student> studentsSupplier = () -> {
-			return new Student("Aldo", "Baglio", 20, intSupplier.get());
+			return new Student(f.name().firstName(), f.name().lastName(), intSupplier.get(), intSupplier.get());
 		};
 //
-//		List<Student> students = new ArrayList<>();
-//
-//		for (int i = 0; i < 100; i++) {
-//			students.add(studentsSupplier.get());
-//		}
-//
-//		students.forEach(i -> System.out.println(i));
+		List<Student> students = new ArrayList<>();
+
+		for (int i = 0; i < 100; i++) {
+			System.out.println(f.address().fullAddress());
+			students.add(studentsSupplier.get());
+		}
+
+		students.forEach(i -> System.out.println(i));
 
 //
 //		List<Integer> interi = new ArrayList<>();
@@ -150,17 +158,17 @@ public class App {
 //			return new Student("Aldo", "Baglio", intSupplier.get(), rndm.nextInt());
 //		};
 //
-		List<Student> students = new ArrayList<>();
-
-		for (int i = 0; i < 100; i++) {
-			students.add(studentsSupplier.get());
-		}
-
-		 int totalAge = students.stream().map(s -> s.getAge()).reduce(0, (acc, curr)
-		 -> acc + curr);
-
-//		int totalAge = students.stream().map(Student::getAge).reduce(0, (acc, curr) -> acc + curr);
-		System.out.println(totalAge);
+//		List<Student> students = new ArrayList<>();
+//
+//		for (int i = 0; i < 100; i++) {
+//			students.add(studentsSupplier.get());
+//		}
+//
+//		 int totalAge = students.stream().map(s -> s.getAge()).reduce(0, (acc, curr)
+//		 -> acc + curr);
+//
+////		int totalAge = students.stream().map(Student::getAge).reduce(0, (acc, curr) -> acc + curr);
+//		System.out.println(totalAge);
 //
 //		List<String> youngStudents = students.stream().filter(student -> student.getAge() < 18)
 //				.map(student -> student.getSurname()).toList();
@@ -190,5 +198,8 @@ public class App {
 		System.out.println(yesterday);
 
 		System.out.println(yesterday.isBefore(today));
+
+
+
 	}
 }

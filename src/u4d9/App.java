@@ -112,6 +112,55 @@ public class App {
 //
 //		interi.forEach(i -> System.out.println(i));
 
+		// ********************************** STREAMS ****************************
 
+//		Supplier<Integer> intSupplier = () -> {
+//			Random rndm = new Random();
+//			return rndm.nextInt(1, 100);
+//		};
+
+
+//		List<Integer> interi = new ArrayList<>();
+//		for (int i = 0; i < 100; i++) {
+//			interi.add(intSupplier.get());
+//		}
+//
+//		Predicate<Integer> isLessThan20 = n -> n < 20;
+//		Predicate<Integer> isGreaterThan10 = n -> n > 10;
+//
+////		List<Integer> numbersBetween10And20 = interi.stream().filter(isLessThan20.and(isGreaterThan10)).toList();
+////
+////		numbersBetween10And20.forEach(i -> System.out.println(i));
+//
+//		List<String> mappedNumbers = interi.stream().filter(isLessThan20.and(isGreaterThan10))
+//				.map(num -> "Numero:" + num).toList();
+//		mappedNumbers.forEach(n -> System.out.println(n));
+
+//		Supplier<Student> studentsSupplier = () -> {
+//			Random rndm = new Random();
+//
+//			return new Student("Aldo", "Baglio", intSupplier.get(), rndm.nextInt());
+//		};
+//
+//		List<Student> students = new ArrayList<>();
+//
+//		for (int i = 0; i < 100; i++) {
+//			students.add(studentsSupplier.get());
+//		}
+//
+//		List<String> youngStudents = students.stream().filter(student -> student.getAge() < 18)
+//				.map(student -> student.getSurname()).toList();
+//
+//		youngStudents.forEach(s -> System.out.println(s));
+//
+//		if (students.stream().allMatch(student -> student.getAge() >= 18)) {
+//			System.out.println("Tutti gli studenti sono maggiorenni");
+//		} else {
+//			System.out.println("C'è qualche minorenne");
+//		}
+//
+//		if (students.stream().anyMatch(student -> student.getAge() == 18)) {
+//			System.out.println("C'è almeno uno studente con 18 anni");
+//		}
 	}
 }
